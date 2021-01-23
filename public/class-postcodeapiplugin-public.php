@@ -106,12 +106,15 @@ class Postcodeapiplugin_Public {
 
 		$option = get_option( 'pincode_options' );
 
+		$array = array();
+
 		foreach ( $option as $data ) {
 			$arr = explode( '-', $data );
 			if ( $postcode == $arr[1] ) {
-				echo 'Pincode Available';
+				array_push( $array, array( $arr[0], $arr[1] ) );
 			}
 		}
+		echo json_encode( $array );
 		wp_die();
 	}
 

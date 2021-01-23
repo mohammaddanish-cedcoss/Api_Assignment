@@ -326,21 +326,17 @@ class Postcodeapiplugin_Admin {
 
 		$arr = json_decode( $response );
 		$postoffice = $arr[0]->PostOffice;
-		$count = 0;
 		?>
 
 		<select class="js-example-basic-multiple" id="<?php echo esc_attr( $args['label_for'] );?>" name="pincode_options[]" multiple="multiple">
 			<?php foreach ( $postoffice  as $data ):
 				$option = get_option( 'pincode_options' );
-				$arr = $option[ $count+1 ];	
 				?>
 			<option value="<?php echo esc_html( $data->Name ). '-' . esc_html( $data->Pincode ); ?>"
 			<?php
 			foreach ( $option as $data2  ) {
 				if ( strpos( $data2, $data->Name ) !== false ) {
 					echo esc_html( 'selected' );
-				} else {
-					echo '';
 				}
 			}
 			?>>
